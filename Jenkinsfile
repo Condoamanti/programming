@@ -1,7 +1,8 @@
 podTemplate {
     node("jenkins-slave-jnlp") {
         stage('Run shell') {
-            sh 'echo hello world'
+            sh "echo 'Hello, World!'"
+            sh "hostname"
         }
     }
 }
