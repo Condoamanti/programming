@@ -3,7 +3,7 @@ podTemplate(containers: [
   containerTemplate(name: 'golang', image: 'golang:1.8.0', ttyEnabled: true, command: 'cat')
 ]) {
 
-  node("POD_LABEL") {
+  node(POD_LABEL) {
     stage('Build a Maven project') {
       container("maven") {
         sh 'mvn -B clean install'
