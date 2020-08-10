@@ -1,9 +1,13 @@
-node(jenkins-slave-jnlp) {
-  stage('stage_test')
-    git 'https://github.com/jenkinsci/kubernetes-plugin.git'
-    container('jnlp') {
-        stage('Build a Maven project') {
-            sh 'echo "test"'
-        }
+def call(body) {
+  try {
+    node("jenkins-slave-jnlp") {
+    stage("stage_test")
+      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
+      container("jnlp") {
+          stage('Build a Maven project') {
+              sh 'echo "test"'
+          }
+      }
     }
+  }
 }
