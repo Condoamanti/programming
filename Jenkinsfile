@@ -3,15 +3,7 @@ podTemplate(containers: [
   containerTemplate(name: 'golang', image: 'golang:1.8.0', ttyEnabled: true, command: 'cat')
 ]) {
 
-  node("jenkins-slave-jnlp") {
-
-    stage('Run Shell in jnlp container') {
-      container("jnlp") {
-          sh "echo 'Hello, World!'"
-          sh "hostname"
-      }
-    }
-
+  node("POD_LABEL") {
     stage('Build a Maven project') {
       container("maven") {
         sh 'mvn -B clean install'
