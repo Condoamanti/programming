@@ -1,7 +1,7 @@
 podTemplate(
   cloud: 'kubernetes',
   namespace: 'jenkins',
-  podRetention: 'never',
+  podRetention: never(),
   activeDeadlineSeconds: '100',
   showRawYaml: 'false',
   containers: [
