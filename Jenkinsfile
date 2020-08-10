@@ -1,9 +1,9 @@
 podTemplate(
-  cloud: 'kubernetes'
+  cloud: 'kubernetes',
   namespace: 'jenkins',
   podRetention: 'never()',
-  activeDeadlineSeconds: '100'
-  showRawYaml: 'false'
+  activeDeadlineSeconds: '100',
+  showRawYaml: 'false',
   containers: [
   containerTemplate(
     name: 'maven',
