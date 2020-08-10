@@ -1,10 +1,34 @@
-podTemplate {
-    node("jenkins-slave-jnlp") {
-      container("jnlpz") {
-          stage('Run shell') {
-              sh "echo 'Hello, World!'"
-              sh "hostname"
-          }
-        }
+podTemplate(containers: [
+  containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
+  containerTemplate(name: 'golang', image: 'golang:1.8.0', ttyEnabled: true, command: 'cat') ]) {
+
+  node("jenkins-slave-jnlp") {
+
+    stage('Run Shell in jnlp container') {
+      container("jnlp") {
+          sh "echo 'Hello, World!'"
+          sh "hostname"
+      }
     }
+
+    stage('Build a Maven project') {
+      container("maven") {
+        sh 'mvn -B clean install'
+      }
+    }
+
+    stage("Get a Golang project") {
+      git url: 'https://github.com/hashicorp/terraform.git'
+      container('golang') {
+        stage('Build a Go project') {
+          sh """
+          mkdir -p /go/src/github.com/hashicorp
+          ln -s `pwd` /go/src/github.com/hashicorp/terraform
+          cd /go/src/github.com/hashicorp/terraform && make core-dev
+          """
+        }
+      }
+    }
+
+  }
 }
