@@ -1,38 +1,9 @@
-pipeline {
-  agent {
-    kubernetes {
-      //cloud 'kubernetes'
-      label 'jenkins-slave-jnlp'
-      yaml """
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: docker
-    image: docker:1.11
-    command: ['cat']
-    tty: true
-    volumeMounts:
-    - name: dockersock
-      mountPath: /var/run/docker.sock
-  volumes:
-  - name: dockersock
-    hostPath:
-      path: /var/run/docker.sock
-"""
-    }
-  }
-  stages {
-    stage('Build Docker image') {
-      steps {
-        git 'https://github.com/jenkinsci/docker-jnlp-slave.git'
-        container('docker') {
-          sh "docker build -t jenkins/jnlp-slave ."
-          docker.image('jenkins/jnlp-slave').inside() {
-            sh "whoami"
-          }
+node(jenkins-slave-jnlp) {
+  stage('stage_test')
+    git 'https://github.com/jenkinsci/kubernetes-plugin.git'
+    container('jnlp') {
+        stage('Build a Maven project') {
+            sh 'echo "test"'
         }
-      }
     }
-  }
 }
