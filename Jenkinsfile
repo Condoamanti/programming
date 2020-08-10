@@ -3,7 +3,7 @@ podTemplate(
   namespace: 'jenkins',
   activeDeadlineSeconds: '100',
   showRawYaml: 'false',
-  podRetention: 'never()'
+  podRetention: 'never()',
   containers: [
   containerTemplate(
     name: 'maven',
