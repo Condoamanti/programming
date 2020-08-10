@@ -5,6 +5,7 @@ podTemplate(containers: [
 
   node(POD_LABEL) {
     stage('Build a Maven project') {
+      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
       container("maven") {
         sh 'mvn -B clean install'
       }
