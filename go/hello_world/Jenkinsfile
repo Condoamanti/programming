@@ -25,10 +25,12 @@ podTemplate(
           dir("${WORKSPACE}") {
             sh """
             ls;
+            cd ${WORKSPACE};
+            ls;
             """
           }
         }
-      }
+      } // container end
     } catch (err) {
       echo "Caught: ${err}"
       currentBuild.result = 'FAILURE'
