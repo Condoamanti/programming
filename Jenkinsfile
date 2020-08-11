@@ -28,15 +28,18 @@ podTemplate(
 
   node(POD_LABEL) {
 
-    stage("Get a Golang project") {
-      git url: 'https://github.com/hashicorp/terraform.git'
+    stage("Get Golang Project") {
+      //git url: 'https://github.com/hashicorp/terraform.git'
+      println("here1")
       container('golang') {
-        stage('Build a Go project') {
+        stage('Build DotNet Project') {
+          /*
           sh """
           mkdir -p /go/src/github.com/hashicorp
           ln -s `pwd` /go/src/github.com/hashicorp/terraform
           cd /go/src/github.com/hashicorp/terraform && make core-dev
           """
+          */
         }
       }
     }
