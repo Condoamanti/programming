@@ -20,9 +20,10 @@ podTemplate(
         
         container('golang') {
           stage('Build Golang Project') {
-            dir('/home/jenkins/agent/workspace/programming/go/hello_world') {
+            println("${WORKSPACE}")
+            dir("${WORKSPACE}/go/hello_world") {
               sh """
-              cd /home/jenkins/agent/workspace/programming/go/hello_world
+              pwd;
               go run ./hello-world.go;
               go build ./hello-world.go;
               ls;
@@ -32,9 +33,9 @@ podTemplate(
           }
         }
       }
-    } catch (e) {
+    } catch (err) {
+      echo "Caught: ${err}"
       currentBuild.result = 'FAILURE'
-      throw e
     } finally {
     }
   }
