@@ -14,18 +14,18 @@ podTemplate(
 
   node(POD_LABEL) {
     try {
-      stage("Get Golang Project") {
-        
-        git url: 'https://github.com/Condoamanti/programming.git'
-        
-        container('golang') {
-          stage('Build Golang Project') {
-            println("${WORKSPACE}")
-            dir("${WORKSPACE}") {
-              sh """
-              ls;
-              """
-            }
+      container('golang') {
+
+        stage("Get Golang Project") {
+          git url: 'https://github.com/Condoamanti/programming.git'
+        }
+
+        stage('Build Golang Project') {
+          println("${WORKSPACE}")
+          dir("${WORKSPACE}") {
+            sh """
+            ls;
+            """
           }
         }
       }
