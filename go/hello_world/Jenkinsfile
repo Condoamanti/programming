@@ -14,23 +14,23 @@ podTemplate(
 
   node(POD_LABEL) {
     stage("Get Golang Project") {
-      git url: 'https://github.com/Condoamanti/programming.git'
-      
-      container('golang') {
-        stage('Build Golang Project') {
-          dir('/home/jenkins/agent/workspace/programming/go/hello_world') {
-            sh """
-            ls;
-            go run ./hello-world.go;
-            go build ./hello-world.go;
-            ls;
-            ./hello-world;
-            """
+      steps {
+        git url: 'https://github.com/Condoamanti/programming.git'
+        
+        container('golang') {
+          stage('Build Golang Project') {
+            dir('/home/jenkins/agent/workspace/programming/go/hello_world') {
+              sh """
+              ls;
+              go run ./hello-world.go;
+              go build ./hello-world.go;
+              ls;
+              ./hello-world;
+              """
+            }
           }
         }
       }
-
     }
-
   }
 }
