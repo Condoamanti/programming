@@ -21,14 +21,15 @@ podTemplate(
         }
 
         stage('Build Golang Project') {
-          println("${WORKSPACE}")
-          dir("${WORKSPACE}/go/hello_world") {
-            sh """
-            ls;
-            cd ${WORKSPACE}/go;
-            ls;
-            """
-          }
+          sh """
+          cd ${WORKSPACE}/go/hello_world;
+          ls;
+          pwd;
+          go run ./hello-world.go;
+          go build ./hello-world.go;
+          ls;
+          ./hello-world;
+          """
         }
       } // container end
     } catch (err) {
