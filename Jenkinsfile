@@ -20,10 +20,7 @@ podTemplate(
     name: 'alpine'
     image: 'alpine:latest'
     ttyEnabled: true,
-    command: [
-      'RUN apk add --no-cache mysql-client',
-      'eNTRYPOINT ["mysql"]'
-    ]
+    command: 'cat'
   )
 ]) {
 
