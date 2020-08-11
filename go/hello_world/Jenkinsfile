@@ -18,7 +18,9 @@ podTemplate(
       
       container('golang') {
         stage('Build Golang Project') {
+          dir('go/hello_world')
           sh """
+          pwd;
           ls;
           go run ./hello-world.go;
           go build ./hello-world.go;
