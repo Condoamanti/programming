@@ -17,10 +17,10 @@ podTemplate(
     command: 'cat'
   ),
   containerTemplate(
-    name: 'alpine'
-    image: 'alpine:latest'
+    name: 'alpine',
+    image: 'alpine:latest',
     ttyEnabled: true,
-    command: 'cat'
+    command: 'cat',
   )
 ]) {
 
