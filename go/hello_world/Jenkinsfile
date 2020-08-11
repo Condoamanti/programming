@@ -13,9 +13,8 @@ podTemplate(
 ]) {
 
   node(POD_LABEL) {
-
     stage("Get Golang Project") {
-      git url: 'git@github.com:Condoamanti/programming.git'
+      git url: 'https://github.com/Condoamanti/programming.git'
       container('golang') {
         stage('Build Golang Project') {
           sh """
