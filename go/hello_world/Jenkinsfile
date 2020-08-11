@@ -22,7 +22,7 @@ podTemplate(
           stage('Build Golang Project') {
             dir('/home/jenkins/agent/workspace/programming/go/hello_world') {
               sh """
-              ls;
+              cd $PWD
               go run ./hello-world.go;
               go build ./hello-world.go;
               ls;
