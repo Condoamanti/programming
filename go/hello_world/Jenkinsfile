@@ -18,7 +18,10 @@ podTemplate(
       container('golang') {
         stage('Build Golang Project') {
           sh """
-          echo "`pwd`"
+          go run hellow-world.go
+          go build hellow-world.go
+          ls
+          ./hello-world
           """
         }
       }
