@@ -18,14 +18,15 @@ podTemplate(
       
       container('golang') {
         stage('Build Golang Project') {
-          sh """
-          pwd;
-          ls;
-          go run ./hello-world.go;
-          go build ./hello-world.go;
-          ls;
-          ./hello-world;
-          """
+          dir('/home/jenkins/agent/workspace/programming/go/hello_world') {
+            sh """
+            ls;
+            go run ./hello-world.go;
+            go build ./hello-world.go;
+            ls;
+            ./hello-world;
+            """
+          }
         }
       }
 
