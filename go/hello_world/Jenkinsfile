@@ -1,6 +1,3 @@
-// project variables
-def project_directory = "${WORKSPACE}/go/hello_world"
-
 podTemplate(
   cloud: 'kubernetes',
   namespace: 'jenkins',
@@ -15,6 +12,9 @@ podTemplate(
   )
 ]) {
   node(POD_LABEL) {
+  // project variables
+  def project_directory = "${WORKSPACE}/go/hello_world"
+
     try {
       container('golang') {
 
