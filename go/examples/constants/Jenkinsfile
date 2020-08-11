@@ -13,9 +13,9 @@ podTemplate(
 ]) {
   node(POD_LABEL) {
   // project variables
-  def project_name = "variables"
+  def project_name = "constants"
   
-  def project_directory = "${WORKSPACE}/go/${project_name}"
+  def project_directory = "${WORKSPACE}/go/examples/${project_name}"
   
     try {
       stage("Get Golang Project") {
