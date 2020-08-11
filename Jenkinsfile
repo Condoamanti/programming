@@ -15,7 +15,7 @@ podTemplate(
     image: 'golang:1.8.0',
     ttyEnabled: true,
     command: 'cat'
-  )
+  ),
   containerTemplate(
     name: 'alpine'
     image: 'alpine:latest'
