@@ -5,22 +5,10 @@ podTemplate(
   showRawYaml: 'false',
   containers: [
   containerTemplate(
-    name: 'maven',
-    image: 'maven:3.3.9-jdk-8-alpine',
-    ttyEnabled: true,
-    command: 'cat'
-  ),
-  containerTemplate(
     name: 'golang',
-    image: 'golang:1.8.0',
+    image: 'golang:latest',
     ttyEnabled: true,
     command: 'cat'
-  ),
-  containerTemplate(
-    name: 'alpine',
-    image: 'alpine:latest',
-    ttyEnabled: true,
-    command: 'cat',
   )
 ]) {
 
