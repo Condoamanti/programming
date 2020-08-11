@@ -1,0 +1,39 @@
+podTemplate(
+  cloud: 'kubernetes',
+  namespace: 'jenkins',
+  activeDeadlineSeconds: '100',
+  showRawYaml: 'false',
+  containers: [
+  containerTemplate(
+    name: 'golang',
+    image: 'golang:latest',
+    ttyEnabled: true,
+    command: 'cat'
+  )
+]) {
+  node(POD_LABEL) {
+  // project variables
+  def project_name = "constants"
+  
+  def project_directory = "${WORKSPACE}/go/${project_name}"
+  
+    try {
+      stage("Get Golang Project") {
+        git url: 'https://github.com/Condoamanti/programming.git'
+      }
+
+      container('golang') {1
+        stage('Build Golang Project') {
+          sh """
+          cd ${project_directory};
+          go run ${project_name}.go;
+          """
+        }
+      } // container end
+    } catch (err) {
+      echo "Caught: ${err}"
+      currentBuild.result = 'FAILURE'
+    } finally {
+    }
+  }
+}
