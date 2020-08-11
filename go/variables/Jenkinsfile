@@ -27,9 +27,6 @@ podTemplate(
           sh """
           cd ${project_directory};
           go run ${project_name}.go;
-          go build ${project_name}.go;
-          ls;
-          ./${project_name};
           """
         }
       } // container end
