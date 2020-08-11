@@ -21,7 +21,7 @@ podTemplate(
         git url: 'https://github.com/Condoamanti/programming.git'
       }
 
-      container('golang') {
+      container('golang') {1
         stage('Build Golang Project') {
           sh """
           cd ${project_directory};
