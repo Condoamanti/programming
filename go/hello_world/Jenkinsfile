@@ -22,7 +22,7 @@ podTemplate(
 
         stage('Build Golang Project') {
           println("${WORKSPACE}")
-          dir("${WORKSPACE}") {
+          dir("${WORKSPACE}/go/hello_world") {
             sh """
             ls;
             cd ${WORKSPACE}/go;
