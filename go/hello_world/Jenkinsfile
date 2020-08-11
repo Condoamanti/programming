@@ -11,6 +11,8 @@ podTemplate(
     command: 'cat'
   )
 ]) {
+  // project variables
+  def project_directory = "${WORKSPACE}/go/hello_world"
 
   node(POD_LABEL) {
     try {
@@ -22,9 +24,7 @@ podTemplate(
 
         stage('Build Golang Project') {
           sh """
-          cd ${WORKSPACE}/go/hello_world;
-          ls;
-          pwd;
+          cd ${project_directory};
           go run ./hello_world.go;
           go build ./hello_world.go;
           ls;
