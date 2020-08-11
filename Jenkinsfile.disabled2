@@ -16,14 +16,6 @@ podTemplate(
     ttyEnabled: true,
     command: 'cat'
   )
-  containerTemplate(
-    name: 'alpine'
-    image: 'alpine:latest'
-    ttyEnabled: true,
-    command: [
-      'RUN apk add --no-cache mysql-client',
-      'eNTRYPOINT ["mysql"]'
-  )
 ]) {
 
   node(POD_LABEL) {
