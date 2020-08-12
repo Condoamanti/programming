@@ -18,7 +18,7 @@ if ("${project_name}" != "") {
         try {
           // project variables
           def project_directory = "${WORKSPACE}/go/examples"
-          if (fileExists "${project_directory}/${project_name}.go") {
+          if (fileExists("${project_directory}/${project_name}.go")) {
 
             stage("Get Golang Project") {
               git url: 'https://github.com/Condoamanti/programming.git'
