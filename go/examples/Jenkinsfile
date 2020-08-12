@@ -1,7 +1,5 @@
 if ("${project_name}" != "") {
-  sh """
-  echo \"project_name: ${project_name}\"
-  """
+  println("project_name: ${project_name}")
   podTemplate(
     cloud: 'kubernetes',
     namespace: 'jenkins',
