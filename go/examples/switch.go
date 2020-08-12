@@ -26,7 +26,7 @@ func main() {
     }
 
     t := time.Now()
-    println(t)
+    fmt.Println(t)
     switch {
     case t.Hour() < 12:
         fmt.Println("It's before noon")
