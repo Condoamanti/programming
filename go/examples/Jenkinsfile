@@ -1,6 +1,6 @@
 if ("${project_name}" != "") {
   // project variables
-  def project_directory = "${WORKSPACE}/go/examples/${project_name}"
+  def project_directory = "${WORKSPACE}/go/examples"
 
   podTemplate(
     cloud: 'kubernetes',
