@@ -14,7 +14,6 @@ if {
   ]) {
     node(POD_LABEL) {
     // project variables
-    if ("${project_name}" != "") {
       def project_directory = "${WORKSPACE}/go/examples/${project_name}"
 
         try {
@@ -22,7 +21,7 @@ if {
             git url: 'https://github.com/Condoamanti/programming.git'
           }
 
-          container('golang') {1
+          container('golang') {
             stage('Build Golang Project') {
               sh """
               cd ${project_directory};
@@ -34,7 +33,6 @@ if {
           echo "Caught: ${err}"
           currentBuild.result = 'FAILURE'
         } finally {
-        }
       }
     }
   }
