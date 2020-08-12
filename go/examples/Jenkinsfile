@@ -1,5 +1,8 @@
 if ("${project_name}" != "") {
   println("project_name: ${project_name}")
+  // project variables
+  def project_directory = "${WORKSPACE}/go/examples"
+  
   podTemplate(
     cloud: 'kubernetes',
     namespace: 'jenkins',
@@ -15,9 +18,6 @@ if ("${project_name}" != "") {
   ]) {
     node(POD_LABEL) {
         try {
-          // project variables
-          def project_directory = "${WORKSPACE}/go/examples"
-
           stage("Get Golang Project") {
             git url: 'https://github.com/Condoamanti/programming.git'
           }
