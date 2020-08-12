@@ -1,8 +1,6 @@
 if ("${project_name}" != "") {
   println("project_name: ${project_name}")
-  // project variables
-  def project_directory = "${WORKSPACE}/go/examples"
-  
+
   podTemplate(
     cloud: 'kubernetes',
     namespace: 'jenkins',
@@ -18,25 +16,30 @@ if ("${project_name}" != "") {
   ]) {
     node(POD_LABEL) {
         try {
-          stage("Get Golang Project") {
-            git url: 'https://github.com/Condoamanti/programming.git'
-          }
+          // project variables
+          def project_directory = "${WORKSPACE}/go/examples"
+          if (fileExists "${project_directory}/${project_name}.go") {
 
-          container('golang') {
-            stage('Build Golang Project') {
-              sh """
-              cd ${project_directory};
-              go run ${project_name}.go;
-              """
-            }
-          } // container end
+            stage("Get Golang Project") {
+              git url: 'https://github.com/Condoamanti/programming.git'
+            } // stage end
+
+            container('golang') {
+              stage('Build Golang Project') {
+                sh """
+                cd ${project_directory};
+                go run ${project_name}.go;
+                """
+              } // stage end
+            } // container end
+          } // if end
         } catch (err) {
           echo "Caught: ${err}"
           currentBuild.result = 'FAILURE'
         } finally {
       }
-    }
-  }
+    } // node end
+  } // podTemplate end
 } else {
   println("variable [project_name] is undefined, current value is [${project_name}]")
-}
+} // else end
