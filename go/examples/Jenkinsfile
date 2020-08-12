@@ -1,4 +1,4 @@
-if {
+if ("${project_name}" != "") {
   podTemplate(
     cloud: 'kubernetes',
     namespace: 'jenkins',
