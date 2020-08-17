@@ -45,6 +45,7 @@ baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
+              dnf install http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/7/extras/x86_64/Packages/container-selinux-2.107-3.el7.noarch.rpm
               dnf clean all
               dnf update -y
               dnf install -y epel-release
