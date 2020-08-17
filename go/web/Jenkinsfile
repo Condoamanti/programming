@@ -1,6 +1,6 @@
 podTemplate(
   cloud: 'kubernetes',
-  namespace: 'web',
+  namespace: 'jenkins',
   activeDeadlineSeconds: '100',
   showRawYaml: 'false',
   containers: [
