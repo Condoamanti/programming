@@ -23,6 +23,10 @@ podTemplate(
           container('ubuntu') {
             stage('Download Docker Dependencies') {
               sh """
+              echo 'installing curl'
+              apt-get install curl
+              echo 'adding docker gpg key'
+              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
               echo 'installing docker-ce'
               apt-get install docker-ce
               echo 'installing docker-ce-cli'
