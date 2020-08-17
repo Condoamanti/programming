@@ -29,10 +29,9 @@ podTemplate(
 
               echo \"[Artifactory]
 name=Artifactory
-baseurl=http://admin:AP3kqbPPh1VqC1oA6ZuqoBnzyfW@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm-remote/8
+baseurl=http://k8snode1dc1.jittersolutions.com:32382/artifactory/rpm-remote/8
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
-
               yum update -y
               """
             } // stage end
