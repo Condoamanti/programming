@@ -24,8 +24,11 @@ podTemplate(
           container('ubuntu') {
             stage('Download Docker Dependencies') {
               sh """
+              cat '/etc/apt/sources.list'
+              echo '\"deb http://k8snode1dc1.jittersolutions.com:32382/artifactory/debian-remote <DISTRIBUTION> <COMPONENT>\" >> /etc/apt/sources.list'
               apt-get update -y
-
+              """
+              /*
               echo 'installing curl'
               apt-get install curl -y
 
@@ -52,6 +55,7 @@ podTemplate(
 
               systemctl status docker
               """
+              */
             } // stage end
           } // container end
       } catch (err) {
