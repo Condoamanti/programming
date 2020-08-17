@@ -25,6 +25,7 @@ podTemplate(
             stage('Download Docker Dependencies') {
               sh """
               cat '/etc/apt/sources.list'
+              echo '########################################'
               echo '\"deb http://k8snode1dc1.jittersolutions.com:32382/artifactory/debian-remote <DISTRIBUTION> <COMPONENT>\" >> /etc/apt/sources.list'
               apt-get update -y
               """
