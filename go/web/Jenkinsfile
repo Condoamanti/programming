@@ -16,15 +16,16 @@ podTemplate(
         // project variables
         def project_directory = "${WORKSPACE}/go/web"
 
+/*
           stage("Get Golang Project") {
             git url: 'https://github.com/Condoamanti/programming.git'
           } // stage end
-
+*/
           container('ubuntu') {
             stage('Download Docker Dependencies') {
               sh """
               apt-get update
-              
+
               echo 'installing curl'
               apt-get install curl
 
