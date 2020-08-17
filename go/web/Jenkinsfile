@@ -9,7 +9,7 @@ podTemplate(
     image: 'centos:centos7',
     ttyEnabled: true,
     privileged: true,
-    command: 'cat'
+    command: '/usr/sbin/init'
   )
 ]) {
   node(POD_LABEL) {
@@ -68,6 +68,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               yum install -y yum-utils
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
               yum install -y docker-ce
+              yum clean all
 
               (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ \$i == systemd-tmpfiles-setup.service ] || rm -f \$i; done)
               rm -f /lib/systemd/system/multi-user.target.wants/*
