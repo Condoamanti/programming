@@ -33,8 +33,6 @@ baseurl=http://admin:AP3kqbPPh1VqC1oA6ZuqoBnzyfW@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
-              cat /etc/yum.repos.d/artifactory.repo
-              ls /etc/yum.repos.d/
               """
             } // stage end
           } // container end
