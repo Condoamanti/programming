@@ -25,8 +25,9 @@ podTemplate(
             stage('Download Docker Dependencies') {
               sh """
               mkdir /etc/yum.repos.d/disabled
-              mv -t /etc/yum.repos.d/* !(disabled) /etc/yum.repos.d/disabled
-
+              cp -af !(disabled) /etc/yum.repos.d/* /etc/yum.repos.d/disabled
+              rm -rf !(disabled) /etc/yum.repos.d/*
+              
               echo \"[Artifactory]
               name=Artifactory
               baseurl=http://admin:AP3kqbPPh1VqC1oA6ZuqoBnzyfW@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm-remote/<PATH_TO_REPODATA_FOLDER>
