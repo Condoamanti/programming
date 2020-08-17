@@ -31,13 +31,15 @@ podTemplate(
 
               echo 'installing gnupg2'
               apt-get install gnupg2 -y
-              
+
               echo 'downloading docker gpg key'
               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
               echo 'adding docker repository'
-              add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) stable\"
+              add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable\"
               
+              apt-get update -y
+
               echo 'installing docker-ce'
               apt-get install docker-ce -y
               
@@ -46,6 +48,8 @@ podTemplate(
               
               echo 'installing containerd.io'
               apt-get containerd.io -y
+
+              systemctl status docker
               """
             } // stage end
           } // container end
