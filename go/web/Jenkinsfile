@@ -43,7 +43,7 @@ name=artifactory-centos-8-os
 baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/cr/x86_64/os
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
-              yum update -y
+              yum update -yq
               """
             } // stage end
           } // container end
