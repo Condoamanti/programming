@@ -23,6 +23,8 @@ podTemplate(
           container('ubuntu') {
             stage('Download Docker Dependencies') {
               sh """
+              apt-get update
+              
               echo 'installing curl'
               apt-get install curl
 
