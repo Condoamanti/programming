@@ -1,43 +1,38 @@
-if ("${project_name}" != "") {
-  println("project_name: ${project_name}")
+podTemplate(
+  cloud: 'kubernetes',
+  namespace: 'web',
+  activeDeadlineSeconds: '100',
+  showRawYaml: 'false',
+  containers: [
+  containerTemplate(
+    name: 'ubuntu',
+    image: 'ubuntu:latest',
+    ttyEnabled: true,
+    command: 'cat'
+  )
+]) {
+  node(POD_LABEL) {
+      try {
+        // project variables
+        def project_directory = "${WORKSPACE}/go/web"
 
-  podTemplate(
-    cloud: 'kubernetes',
-    namespace: 'jenkins',
-    activeDeadlineSeconds: '100',
-    showRawYaml: 'false',
-    containers: [
-    containerTemplate(
-      name: 'golang',
-      image: 'golang:latest',
-      ttyEnabled: true,
-      command: 'cat'
-    )
-  ]) {
-    node(POD_LABEL) {
-        try {
-          // project variables
-          def project_directory = "${WORKSPACE}/go/examples"
+          stage("Get Golang Project") {
+            git url: 'https://github.com/Condoamanti/programming.git'
+          } // stage end
 
-            stage("Get Golang Project") {
-              git url: 'https://github.com/Condoamanti/programming.git'
+          container('ubuntu') {
+            stage('Build Golang Project') {
+              sh """
+              apt-get -y update;
+              apt-get -y upgrade;
+              apt-get install -y build-essential;
+              """
             } // stage end
-
-            container('golang') {
-              stage('Build Golang Project') {
-                sh """
-                cd ${project_directory};
-                go run ${project_name}.go;
-                """
-              } // stage end
-            } // container end
-        } catch (err) {
-          echo "Caught: ${err}"
-          currentBuild.result = 'FAILURE'
-        } finally {
-      }
-    } // node end
-  } // podTemplate end
-} else {
-  println("variable [project_name] is undefined, current value is [${project_name}]")
-} // else end
+          } // container end
+      } catch (err) {
+        echo "Caught: ${err}"
+        currentBuild.result = 'FAILURE'
+      } finally {
+    }
+  } // node end
+} // podTemplate end
