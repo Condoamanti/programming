@@ -24,6 +24,7 @@ podTemplate(
           container('centos') {
             stage('Download Docker Dependencies') {
               sh """
+              cat /etc/*elease
               rm -rf /etc/yum.repos.d/*
 
               echo \"[Artifactory]
