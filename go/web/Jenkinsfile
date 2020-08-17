@@ -27,21 +27,21 @@ podTemplate(
               cat /etc/*elease
               rm -rf /etc/yum.repos.d/*
 
-              echo \"[artifactory-centos-8-os]
+              echo \"[artifactory-centos-8]
 name=artifactory-centos-8-baseos
-baseurl=http://k8snode1dc1.jittersolutions.com:32382/artifactory/rpm-remote/8/BaseOS/x86_64
+baseurl=http://k8snode1dc1.jittersolutions.com:32382/artifactory/rpm-remote/8/BaseOS/x86_64/os
 enabled=1
 gpgcheck=0
 
 [artifactory-centos-8-extras]
 name=artifactory-centos-8-os
-baseurl=http://k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/extras/x86_64
+baseurl=http://k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/extras/x86_64/os
 enabled=1
 gpgcheck=0
 
 [artifactory-centos-8-cr]
 name=artifactory-centos-8-os
-baseurl=http://k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/cr/x86_64
+baseurl=http://k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/cr/x86_64/os
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               yum update -y
