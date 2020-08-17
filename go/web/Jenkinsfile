@@ -25,7 +25,7 @@ podTemplate(
             stage('Download Docker Dependencies') {
               sh """
               mkdir /etc/yum.repos.d/disabled
-              mv !(disabled) /etc/yum.repos.d/* /etc/yum.repos.d/disabled
+              mv !\(disabled\) /etc/yum.repos.d/* /etc/yum.repos.d/disabled
 
               echo \"[Artifactory]
               name=Artifactory
