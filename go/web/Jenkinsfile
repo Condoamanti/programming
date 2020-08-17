@@ -44,9 +44,11 @@ baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
-              yum update -y
-
-              yum install -y epel-release
+              yum update -yq
+              yum install -yq epel-release
+              yum install -y docker-ce docker-ce-cli containerd.io
+              systemctl start docker
+              docker run hello-world
               """
             } // stage end
           } // container end
