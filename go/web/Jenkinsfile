@@ -29,7 +29,7 @@ podTemplate(
 
               echo \"[artifactory-centos-8]
 name=artifactory-centos-8-baseos
-baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/BaseOS/x86_64
+baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/BaseOS/x86_64/os
 enabled=1
 gpgcheck=0
 
