@@ -68,7 +68,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
               yum install -y docker-ce
 
-              docker --privileged run hello-world
+              docker run --privileged hello-world
               """
             } // stage end
           } // container end
