@@ -36,6 +36,7 @@ podTemplate(
               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
               echo 'adding docker repository'
+              apt-get install software-properties-common -y
               add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable\"
               
               apt-get update -y
