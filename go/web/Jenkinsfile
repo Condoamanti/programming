@@ -45,13 +45,13 @@ baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
-              yum clean all
-              yum update -y
-              yum install -y epel-release
-              yum install -y yum-utils
-              yum install -y container-selinux
-              yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-              yum install -y docker-ce docker-ce-cli containerd.io
+              dnf clean all
+              dnf update -y
+              dnf install -y epel-release
+              dnf install -y yum-utils
+              dnf install -y container-selinux
+              dnf-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+              dnf install -y docker-ce
               systemctl start docker
               docker run hello-world
               """
