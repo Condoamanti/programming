@@ -24,10 +24,10 @@ podTemplate(
           container('ubuntu') {
             stage('Download Docker Dependencies') {
               sh """
-              apt-get update
+              apt-get update -y
 
               echo 'installing curl'
-              apt-get install curl
+              apt-get install curl -y
 
               echo 'downloading docker gpg key'
               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
@@ -36,13 +36,13 @@ podTemplate(
               add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) stable\"
               
               echo 'installing docker-ce'
-              apt-get install docker-ce
+              apt-get install docker-ce -y
               
               echo 'installing docker-ce-cli'
-              apt-get docker-ce-cli
+              apt-get docker-ce-cli -y
               
               echo 'installing containerd.io'
-              apt-get containerd.io;
+              apt-get containerd.io -y
               """
             } // stage end
           } // container end
