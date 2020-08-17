@@ -23,9 +23,7 @@ podTemplate(
           container('ubuntu') {
             stage('Build Golang Project') {
               sh """
-              apt-get -y update;
-              apt-get -y upgrade;
-              apt-get install -y build-essential;
+              sudo apt-get install docker-ce docker-ce-cli containerd.io;
               """
             } // stage end
           } // container end
