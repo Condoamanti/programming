@@ -21,7 +21,7 @@ podTemplate(
           } // stage end
 
           container('ubuntu') {
-            stage('Build Golang Project') {
+            stage('Download Docker Dependencies') {
               sh """
               echo 'installing docker-ce'
               apt-get install docker-ce
