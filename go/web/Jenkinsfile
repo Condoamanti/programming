@@ -34,6 +34,7 @@ podTemplate(
               gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
               cat /etc/yum.repos.d/artifactory.repo
+              ls /etc/yum.repos.d/
               """
             } // stage end
           } // container end
