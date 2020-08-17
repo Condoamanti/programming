@@ -49,7 +49,6 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               dnf update -y
               dnf install -y epel-release
               dnf install -y yum-utils
-              dnf install -y container-selinux
               dnf-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
               dnf install -y docker-ce
               systemctl start docker
