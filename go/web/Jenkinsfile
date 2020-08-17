@@ -46,7 +46,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
               yum update -y
 
-              yum install epel-release
+              yum install -y epel-release
               """
             } // stage end
           } // container end
