@@ -71,7 +71,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               yum clean all
 
               systemctl start docker
-              docker run --privileged hello-world
+              docker run --privileged centos:centos7
               """
             } // stage end
           } // container end
