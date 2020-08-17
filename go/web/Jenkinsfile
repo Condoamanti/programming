@@ -24,11 +24,11 @@ podTemplate(
             stage('Build Golang Project') {
               sh """
               echo 'installing docker-ce'
-              sudo apt-get install docker-ce
+              apt-get install docker-ce
               echo 'installing docker-ce-cli'
-              sudo apt-get docker-ce-cli
+              apt-get docker-ce-cli
               echo 'installing containerd.io'
-              sudo apt-get containerd.io;
+              apt-get containerd.io;
               """
             } // stage end
           } // container end
