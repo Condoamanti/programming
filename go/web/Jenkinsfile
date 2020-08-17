@@ -5,8 +5,8 @@ podTemplate(
   showRawYaml: 'false',
   containers: [
   containerTemplate(
-    name: 'ubuntu',
-    image: 'ubuntu:latest',
+    name: 'centos',
+    image: 'centos:latest',
     ttyEnabled: true,
     command: 'cat'
   )
@@ -21,43 +21,11 @@ podTemplate(
             git url: 'https://github.com/Condoamanti/programming.git'
           } // stage end
 */
-          container('ubuntu') {
+          container('centos') {
             stage('Download Docker Dependencies') {
               sh """
-              cat '/etc/apt/sources.list'
-              echo '########################################'
-              echo '\"deb http://k8snode1dc1.jittersolutions.com:32382/artifactory/debian-remote\" >> /etc/apt/sources.list'
-              apt-get update -y
-
-
-              echo 'installing curl'
-              apt-get install curl -y
+              ls /etc/yum.repos.d/
               """
-              /*
-              echo 'installing gnupg2'
-              apt-get install gnupg2 -y
-
-              echo 'downloading docker gpg key'
-              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-
-              echo 'adding docker repository'
-              apt-get install software-properties-common -y
-              add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable\"
-              
-              apt-get update -y
-
-              echo 'installing docker-ce'
-              apt-get install docker-ce -y
-              
-              echo 'installing docker-ce-cli'
-              apt-get docker-ce-cli -y
-              
-              echo 'installing containerd.io'
-              apt-get containerd.io -y
-
-              systemctl status docker
-              """
-              */
             } // stage end
           } // container end
       } catch (err) {
