@@ -26,7 +26,8 @@ podTemplate(
               sh """
               rm -rf /etc/yum.repos.d/*
 
-              echo \"[artifactory-centos-8]
+              echo \"# Artifactory Repository
+[artifactory-centos-8]
 name=artifactory-centos-8-baseos
 baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/8/BaseOS/x86_64/os
 enabled=1
@@ -44,8 +45,10 @@ baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
-              yum update -yq
-              yum install -yq epel-release container-selinux yum-utils
+              yum update -y
+              yum install -y epel-release
+              yum install -y yum-utils
+              yum install -y container-selinux
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
               yum install -y docker-ce docker-ce-cli containerd.io
               systemctl start docker
