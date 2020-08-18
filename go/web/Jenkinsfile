@@ -59,7 +59,7 @@ baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
-              yum update --assume-yes --quiet
+              yum update --assumeyes --quiet
 
               yum install --assumeyes --quiet container-selinux
               yum install --assumeyes --quiet epel-release
