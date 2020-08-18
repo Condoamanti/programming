@@ -1,4 +1,6 @@
-{
+if ("${project_name}" != "") {
+  println("project_name: ${project_name}")
+
   podTemplate(
     cloud: 'kubernetes',
     namespace: 'jenkins',
@@ -6,8 +8,8 @@
     showRawYaml: 'false',
     containers: [
     containerTemplate(
-      name: 'ubuntu',
-      image: 'ubuntu:latest',
+      name: 'golang',
+      image: 'golang:latest',
       ttyEnabled: true,
       command: 'cat'
     )
@@ -15,12 +17,17 @@
     node(POD_LABEL) {
         try {
           // project variables
-          def project_directory = "${WORKSPACE}/go/web"
+          def project_directory = "${WORKSPACE}/go/examples"
 
-            container('ubuntu') {
-              stage('Create Docker Image') {
+            stage("Get Golang Project") {
+              git url: 'https://github.com/Condoamanti/programming.git'
+            } // stage end
+
+            container('golang') {
+              stage('Build Golang Project') {
                 sh """
-                
+                cd ${project_directory};
+                go run ${project_name}.go;
                 """
               } // stage end
             } // container end

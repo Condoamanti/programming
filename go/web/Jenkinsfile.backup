@@ -22,15 +22,12 @@ podTemplate(
           } // stage end
 
           container('centos') {
-            stage('Remove Default CentOS7 Repositories') {
+            stage('Download Docker Dependencies') {
               
               sh """
               rm -rf /etc/yum.repos.d/*
-              """
-            } // stage end
 
-            stage('Download Docker Dependencies') {
-              writeFile file: '/etc/yum.repos.d/artifactory.repo', test: """# Artifactory Repository
+              echo \"# Artifactory Repository
 [artifactory-centos-7-os]
 name=artifactory-centos-7-os
 baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/7/os/x86_64
@@ -60,12 +57,13 @@ gpgcheck=0
 name=artifactory-centos-7-cr
 baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/7/cr/x86_64
 enabled=1
-gpgcheck=0"""
-              sh """
+gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
+
               yum update --assumeyes --quiet
+
               yum install --assumeyes --quiet container-selinux
+              yum install --assumeyes --quiet epel-release
               yum install --assumeyes --quiet yum-utils
-              yum clean all
               """
             } // stage end
             stage('Download Docker') {
@@ -81,7 +79,6 @@ gpgcheck=0"""
 
             stage('Build Docker Image') {
               sh """
-              ls
               cd /go
               ls
               docker build -t condoamanti/dockergo .
