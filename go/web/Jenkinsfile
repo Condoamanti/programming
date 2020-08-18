@@ -84,6 +84,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
             stage('Build Docker Image') {
               sh """
+              pwd
               ls
               cd ./go/web
               ls
