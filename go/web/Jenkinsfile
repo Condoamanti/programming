@@ -60,14 +60,15 @@ enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
               yum clean all
-              yum update -y -q
+              yum update --assume-yes --quiet
 
-              yum install -y -q container-selinux
-
-              yum install -y -q epel-release
-              yum install -y -q yum-utils
+              yum install --assume-yes --quiet container-selinux
+              yum install --assume-yes --quiet epel-release
+              yum install --assume-yes --quiet yum-utils
+              
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-              yum install -y -q docker-ce
+              yum install --assume-yes --quiet docker-ce
+              
               yum clean all
 
               systemctl start docker
