@@ -24,13 +24,10 @@ podTemplate(
 */
           container('centos') {
             stage('Download Docker Dependencies') {
-              
               sh """
               rm -rf /etc/yum.repos.d/*
-              """
-              
-              def artifactory_repository = new File('/etc/yum.repos.d/artifactory.repo')
-              artifactory_repository.write "# Artifactory Repository
+
+              echo \"# Artifactory Repository
 [artifactory-centos-7-os]
 name=artifactory-centos-7-os
 baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/7/os/x86_64
@@ -60,9 +57,8 @@ gpgcheck=0
 name=artifactory-centos-7-cr
 baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/7/cr/x86_64
 enabled=1
-gpgcheck=0"
+gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
-              sh """
               yum update --assumeyes --quiet
 
               yum install --assumeyes --quiet container-selinux
@@ -76,7 +72,7 @@ gpgcheck=0"
 
               systemctl start docker
               systemctl status docker
-              docker run --privileged alpine echo \"Hello World"
+              docker run --privileged alpine echo \"Hello World\"
               """
             } // stage end
           } // container end
