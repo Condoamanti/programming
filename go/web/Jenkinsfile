@@ -72,7 +72,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
               systemctl start docker
               systemctl status docker
-              docker run --privileged busybox:latest
+              docker run --privileged hello-world:latest
               """
             } // stage end
           } // container end
