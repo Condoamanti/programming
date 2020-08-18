@@ -17,11 +17,10 @@ podTemplate(
         // project variables
         def project_directory = "${WORKSPACE}/go/web"
 
-/*
           stage("Get Golang Project") {
             git url: 'https://github.com/Condoamanti/programming.git'
           } // stage end
-*/
+
           container('centos') {
             stage('Download Docker Dependencies') {
               
@@ -65,15 +64,23 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               yum install --assumeyes --quiet container-selinux
               yum install --assumeyes --quiet epel-release
               yum install --assumeyes --quiet yum-utils
-              
+              """
+            } // stage end
+            stage('Download Docker') {
+              sh """
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
               yum install --assumeyes --quiet docker-ce
               
               yum clean all
 
               systemctl start docker
-              systemctl status docker
-              docker run --privileged alpine echo \"Hello World\"
+              """
+            } // stage end
+
+            stage('Build Docker Image') {
+              sh """
+              ls
+              docker build -t condoamanti/dockergo .
               """
             } // stage end
           } // container end

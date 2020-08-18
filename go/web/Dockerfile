@@ -1,6 +1,10 @@
-FROM ubuntu
-MAINTAINER Condoamanti Condoamanti@gmail.com
+# iron/go:dev is the alpine image with the golang tools added
+FROM iron/go:dev
+WORKDIR /app
+ENV SRC_DIR=/go/src/github.com/Condoamanti/programming
 
-RUN apt-get -y update
-RUN apt-get -y upgrade
-RUN apt-get install -y build-essential
+# Add repository source code
+ADD . $SRC_DIR
+
+# Build it:
+RUN cd $SRC_DIR; go build -o myapp; cp myapp /app/ENTRYPOINT ["./go/web"]
