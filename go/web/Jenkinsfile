@@ -44,7 +44,6 @@ baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0
 
-
 [artifactory-centos-7-fasttrack]
 name=artifactory-centos-7-fasttrack
 baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com:32382/artifactory/rpm/7/fasttrack/x86_64
@@ -64,6 +63,7 @@ enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
             """
             } // stage end
+
             stage('Download Docker Dependencies') {
               sh """
               yum update --assumeyes --quiet
@@ -72,6 +72,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               yum clean all
               """
             } // stage end
+
             stage('Download Docker') {
               sh """
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -84,7 +85,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
             stage('Build Docker Image') {
               sh """
               ls
-              cd /go
+              cd ./go
               ls
               #docker build -t condoamanti/dockergo .
               #ls
