@@ -82,6 +82,7 @@ gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
               cd /go/web/
               ls
               docker build -t condoamanti/dockergo .
+              ls
               """
             } // stage end
           } // container end
