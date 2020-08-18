@@ -72,9 +72,7 @@ gpgcheck=0"""
               sh """
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
               yum install --assumeyes --quiet docker-ce
-              
               yum clean all
-
               systemctl start docker
               """
             } // stage end
@@ -84,8 +82,8 @@ gpgcheck=0"""
               ls
               cd /go
               ls
-              docker build -t condoamanti/dockergo .
-              ls
+              #docker build -t condoamanti/dockergo .
+              #ls
               """
             } // stage end
           } // container end
