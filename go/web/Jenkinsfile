@@ -59,15 +59,14 @@ baseurl=http://admin:AP72goB1ugbhNixgk4oZQD1JSMK@k8snode1dc1.jittersolutions.com
 enabled=1
 gpgcheck=0\" >> /etc/yum.repos.d/artifactory.repo
 
-              yum clean all
               yum update --assume-yes --quiet
 
-              yum install --assume-yes --quiet container-selinux
-              yum install --assume-yes --quiet epel-release
-              yum install --assume-yes --quiet yum-utils
+              yum install --assumeyes --quiet container-selinux
+              yum install --assumeyes --quiet epel-release
+              yum install --assumeyes --quiet yum-utils
               
               yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-              yum install --assume-yes --quiet docker-ce
+              yum install --assumeyes --quiet docker-ce
               
               yum clean all
 
