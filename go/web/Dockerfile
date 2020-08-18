@@ -7,4 +7,7 @@ ENV SRC_DIR=/go/src/github.com/Condoamanti/programming
 ADD . $SRC_DIR
 
 # Build it:
-RUN cd $SRC_DIR; go build -o myapp; cp myapp /app/ENTRYPOINT ["./go/web"]
+RUN cd $SRC_DIR;
+RUN go build -o myapp
+RUN cp myapp /app/
+ENTRYPOINT ["./app"]
