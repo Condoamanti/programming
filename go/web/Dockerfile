@@ -2,7 +2,8 @@
 FROM centos:centos7
 MAINTAINER Condoamanti "Condoamanti@gmail.com"
 RUN yum update -y
-
+RUN yum install epel-release -y
+RUN yum install golang -y
 RUN yum install git -y
 RUN yum clean all
 
