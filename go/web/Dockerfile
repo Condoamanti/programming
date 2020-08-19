@@ -1,5 +1,5 @@
 # iron/go:dev is the alpine image with the golang tools added
-FROM centos/centos7:latest
+FROM centos/centos7
 MAINTAINER Condoamanti "Condoamanti@gmail.com"
 RUN yum update -y
 
