@@ -10,8 +10,8 @@ RUN mkdir /app
 ADD . /app
 
 WORKDIR /app
-# Build it:
 RUN cd /app
+
 RUN go build -o main
 ENTRYPOINT ["./app"]
 EXPOSE 80/tcp 443/tcp
