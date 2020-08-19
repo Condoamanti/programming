@@ -1,13 +1,17 @@
 # iron/go:dev is the alpine image with the golang tools added
-FROM iron/go:dev
+FROM centos/centos7:latest
+MAINTAINER Condoamanti "Condoamanti@gmail.com"
+RUN yum update -y
+
+RUN yum install git -y
+RUN yum clean all
+
+RUN mkdir /app
+ADD . /app
+
 WORKDIR /app
-ENV SRC_DIR=/go/src/github.com/Condoamanti/programming
-
-# Add repository source code
-ADD . $SRC_DIR
-
 # Build it:
-RUN cd $SRC_DIR;
-RUN go build -o myapp
-RUN cp myapp /app/
+RUN cd /app
+RUN go build -o main
 ENTRYPOINT ["./app"]
+EXPOSE 80/tcp 443/tcp
