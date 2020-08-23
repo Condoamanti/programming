@@ -6,6 +6,13 @@ def call(body) {
     Docker = null
 
     try {
+        stage ("Get Dependencies") {
+            git url: 'https://github.com/Condoamanti/programming.git'
+            sh """
+            ls
+            """
+        }
+
         node("jenkins-slave") {
             stage ("test") {
                 docker = new Docker(this)
