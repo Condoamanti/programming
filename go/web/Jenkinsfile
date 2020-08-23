@@ -1,7 +1,6 @@
 import groovy.src.jenkins.*
 def call(body) {
     def config = [:]
-    def projectInfo = [:]
 
     Docker = null
 
