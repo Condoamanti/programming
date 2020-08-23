@@ -12,8 +12,8 @@ def call(body) {
                 docker.hello("test message")
             }
         }
-    } catch (err) {
-        echo "Caught: ${err}"
+    } catch (error) {
+        echo "Caught: ${error}"
         currentBuild.result = 'FAILURE'
     }
 }
