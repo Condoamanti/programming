@@ -1,6 +1,6 @@
 # iron/go:dev is the alpine image with the golang tools added
 FROM centos:centos7
-MAINTAINER Condoamanti "Condoamanti@gmail.com"
+LABEL MAINTAINER="Condoamanti Condoamanti@gmail.com"
 RUN yum update -y
 RUN yum install epel-release -y
 RUN yum install golang -y

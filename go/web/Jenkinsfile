@@ -1,21 +1,16 @@
-node("jenkins-slave") {
-  try {
-    // project variables
-    def project_directory = "${WORKSPACE}/go/web"
+import groovy.src.jenkins.*
+def call(body) {
+    def config = [:]
+    def projectInfo = [:]
 
-    stage("Get Golang Project") {
-      git url: 'https://github.com/Condoamanti/programming.git'
-    } // stage end
+    Docker = null
 
-      stage('Build Docker Image') {
-        sh """
-        docker build -t condoamanti/dockergo ./go/web
-        ls ./go/web
-        """
-      } // stage end
-  } catch (err) {
-    echo "Caught: ${err}"
-    currentBuild.result = 'FAILURE'
-  } finally {
-  }
-} // node end
+    try {
+        node("jenkins-slave") {
+            stage ("test") {
+                docker = new Docker(this)
+                docker.hello("test message")
+            }
+        }
+    }
+}
