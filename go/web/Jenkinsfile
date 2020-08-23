@@ -1,7 +1,10 @@
 import groovy.src.jenkins.*
 def call(body) {
     def config = [:]
-
+    body.resolveStrategy = Closure.DELEGATE.FIRST
+    body.delegate = config
+    body()
+    
     Docker = null
 
     try {
