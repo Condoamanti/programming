@@ -15,8 +15,8 @@ def call(body) {
 
         node("jenkins-slave") {
             stage ("test") {
-                docker = new Docker(this)
-                docker.hello("test message")
+                //docker = new Docker(this)
+                //docker.hello("test message")
             }
         }
     } catch (error) {
