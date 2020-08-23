@@ -1,1 +1,3 @@
-golangCI {}
+golangCI {
+    message = "Message from config"
+}
