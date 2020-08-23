@@ -1,32 +1,21 @@
 import groovy.src.jenkins.*
-def call(body) {
-    def config = [:]
-    body.resolveStrategy = Closure.DELEGATE.FIRST
-    body.delegate = config
-    body()
-
-    Docker = null
-
-
-        node("jenkins-slave") {
-            try {
-                stage ("Get Dependencies") {
-                    git url: 'https://github.com/Condoamanti/programming.git'
-                    sh """
-                    ls
-                    """
-                    print("test")
-                }
-
-                stage ("test") {
-                    //docker = new Docker(this)
-                    //docker.hello("test message")
-                }
-
-            } catch (Exception exception) {
-                echo "Caught: ${error}"
-                currentBuild.result = 'FAILURE'
-            }
+node("jenkins-slave") {
+    try {
+        stage ("Get Dependencies") {
+            git url: 'https://github.com/Condoamanti/programming.git'
+            sh """
+            ls
+            """
+            print("test")
         }
 
+        stage ("test") {
+            //docker = new Docker(this)
+            //docker.hello("test message")
+        }
+
+    } catch (Exception exception) {
+        echo "Caught: ${error}"
+        currentBuild.result = 'FAILURE'
+    }
 }
