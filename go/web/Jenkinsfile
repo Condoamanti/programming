@@ -4,22 +4,26 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE.FIRST
     body.delegate = config
     body()
-    
+
     Docker = null
 
     try {
-        stage ("Get Dependencies") {
-            git url: 'https://github.com/Condoamanti/programming.git'
-            sh """
-            ls
-            """
-        }
-
+        properties properties: [
+            disableConcurrentBuilds()
+        ]
         node("jenkins-slave") {
+            stage ("Get Dependencies") {
+                git url: 'https://github.com/Condoamanti/programming.git'
+                sh """
+                ls
+                """
+            }
+
             stage ("test") {
                 //docker = new Docker(this)
                 //docker.hello("test message")
             }
+            
         }
     } catch (error) {
         echo "Caught: ${error}"
