@@ -15,6 +15,5 @@ def call(body) {
     } catch (err) {
         echo "Caught: ${err}"
         currentBuild.result = 'FAILURE'
-    } finally {
     }
 }
