@@ -1,3 +1,4 @@
 golangCI {
-    message = "Message from config"
+    projectPath = "github.com/condoamanti/programming/golang/web"
+    ports = [portMapping(name: 'http', containerPort: 8081, hostPort: 8081)]
 }
