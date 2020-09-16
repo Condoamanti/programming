@@ -1,3 +1,4 @@
 golangCI {
     projectPath = "github.com/condoamanti/programming/golang/web"
+    packageRepositoryDestination = "artifactory"
 }
