@@ -1,0 +1,5 @@
+golangCI {
+    projectPath = "github.com/condoamanti/programming/golang/hello"
+    projectRepositoryDestination = "artifactory"
+    projectFileExclusions = "*.txt"
+}
